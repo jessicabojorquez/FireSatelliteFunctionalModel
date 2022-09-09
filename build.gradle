@@ -123,12 +123,12 @@ task owlReason(type:io.opencaesar.owl.reason.OwlReasonTask, dependsOn: omlToOwl)
     // OWL catalog
     catalogPath = file('build/owl/catalog.xml')
     // Input ontology IRI to reason on
-    inputOntologyIri = 'http://opencaesar.io/examples/firesat/bundle'
+    inputOntologyIri = 'http://opencaesar.io/examples/firesat_fun/descriptions/bundle'
     // Entailment statements to generate and the ontologies to persist them in
     specs = [
-        'http://opencaesar.io/examples/firesat/bundle/classes = ALL_SUBCLASS',
-        'http://opencaesar.io/examples/firesat/bundle/properties = INVERSE_PROPERTY | ALL_SUBPROPERTY',
-        'http://opencaesar.io/examples/firesat/bundle/individuals = ALL_INSTANCE | DATA_PROPERTY_VALUE | OBJECT_PROPERTY_VALUE | SAME_AS'
+        'http://opencaesar.io/examples/firesat_fun/descriptions/bundle/classes = ALL_SUBCLASS',
+        'http://opencaesar.io/examples/firesat_fun/descriptions/bundle/properties = INVERSE_PROPERTY | ALL_SUBPROPERTY',
+        'http://opencaesar.io/examples/firesat_fun/descriptions/bundle/individuals = ALL_INSTANCE | DATA_PROPERTY_VALUE | OBJECT_PROPERTY_VALUE | SAME_AS'
     ]
     // Junit error report
     reportPath = file('build/reports/reasoning.xml')
@@ -154,9 +154,9 @@ task owlLoad(type:io.opencaesar.owl.load.OwlLoadTask, dependsOn: owlReason) {
     endpointURL = 'http://localhost:3030/firesat'
     fileExtensions = ['owl', 'ttl']
     iris = [
-        'http://opencaesar.io/examples/firesat/bundle/classes',
-        'http://opencaesar.io/examples/firesat/bundle/properties',
-        'http://opencaesar.io/examples/firesat/bundle/individuals'
+        'http://opencaesar.io/examples/firesat_fun/descriptions/bundle/classes',
+        'http://opencaesar.io/examples/firesat_fun/descriptions/bundle/properties',
+        'http://opencaesar.io/examples/firesat_fun/descriptions/bundle/individuals'
     ]
 }
 

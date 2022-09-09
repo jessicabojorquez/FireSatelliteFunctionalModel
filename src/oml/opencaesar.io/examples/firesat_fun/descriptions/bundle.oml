@@ -1,0 +1,4 @@
+description bundle <http://opencaesar.io/examples/firesat_fun/descriptions/bundle#> as ^bundle {
+	uses <http://opencaesar.io/examples/firesat_fun/vocabularies/space-bundle#>
+	includes <http://opencaesar.io/examples/firesat_fun/descriptions/firesat#>
+}

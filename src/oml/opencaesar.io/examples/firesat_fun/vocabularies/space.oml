@@ -1,0 +1,165 @@
+@dc:title "Flight System Engineering"
+vocabulary <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space {
+
+	extends <http://purl.org/dc/elements/1.1/> as dc
+
+	extends <http://www.w3.org/2001/XMLSchema#> as xsd
+
+	extends <http://imce.jpl.nasa.gov/foundation/base#> as base
+
+	extends <http://imce.jpl.nasa.gov/foundation/mission#> as mission
+
+	extends <http://imce.jpl.nasa.gov/foundation/project#> as project
+
+	extends <http://bipm.org/jcgm/vim4#> as vim4
+
+	uses <http://iso.org/iso-80000-4.1#> as iso-80000-4.1
+	
+	//////////////////////
+	///NEW STUFF ADDED:///
+	//////////////////////
+	
+	// The terms (add new stuff here, remove existing ones later)
+	//restrictions go here
+	//if I want to contain something more specific than component, I can add these
+	//I can add these as I go, doesn't have to be initially
+	//types with capital letters (concept is like class in c++)
+	//content assist: Ctrl-Space
+	//need to add the bubbles from sysML (wich are the functions that each component is performing)
+	concept Spacecraft :> mission:Component [
+		
+	]
+	
+	//interface stuff from tutorial 
+	//to explain the specific interfaces that I want to define here: input pin, output pin, port, etc
+	//todo: define space-specific terminology and relate to mission terminology, by extension.
+	
+	
+	//defined here in space and inheriting from component. Subsytem is also a component
+	concept Subsystem :> mission:Component 
+	
+	concept Assembly :> mission:Component
+	
+	//First introduced for SenseThermalEmission, ProcessSignal, ControlSensor (the rectangles with sockets in sysML diagram)
+	concept Function :> mission:Function 
+	
+	//////////////////////////////////////////////
+	///////PORTS, SIGNALS, IN NAD OUT/////////////
+	
+	concept Pin //super type
+	//non-discrete
+	relation entity HasFlow [ //relationship on pin that says that a pin has a flow
+		from Pin
+		to mission:Flow 
+		forward hasFlow
+	]
+	
+	//discrete
+	relation entity HasItem [ //relationship on pin that says that a pin has a flow
+		from Pin
+		to mission:Item
+		forward hasItem
+	]
+	concept InputPin :> Pin //inherit from pin, so every pin has flow
+	concept OutputPin :> Pin //inherit from pin, so every pin has flow
+	//ri is an instance of relation entity
+	relation entity HasInput [ //in description I can use hasFlow on both inputs and outputs
+		from Function
+		to InputPin 
+		forward hasInput
+	]
+	relation entity HasOutput [
+		from Function
+		to OutputPin
+		forward hasOutput 
+	]
+	
+	//discrete: instead of a link
+	//data flow 
+	concept dataFlow
+	relation entity HasDataFlowTo [
+		from InputPin
+		to OutputPin
+		forward hasDataFlowTo
+	]
+	//when I connect thes epins use hasDataFlowTo
+	
+	//data flow 
+	concept dataItem
+	relation entity HasDataItemTo [ 
+		from InputPin
+		to OutputPin
+		forward hasDataItemTo
+	]
+	
+	relation entity OwnsDataFlow [ //relates a function to the data flow object that it owns. "wire or link"  (capital letter creates instance. to create instance of it)
+		from Function
+		to HasDataFlowTo
+		forward ownsDataFlow //underfied (unreal)
+	]
+	relation entity OwnsDataItem [ //relates a function to the data flow object that it owns. "wire or link"  (capital letter creates instance. to create instance of it)
+		from Function
+		to HasDataItemTo
+		forward ownsDataItem //underfied (unreal)
+	]
+	
+	aspect Specializable
+	relation entity Specializes [ //inherits
+		from Specializable
+		to Specializable
+		forward specializes
+	]
+	
+	concept Item :> mission:Item, Specializable  //2 super types
+	concept Flow :> mission:Flow, Specializable
+		
+	
+	
+	
+	
+	
+	
+	//a pin has a type which is of type flow (like a signal) there is support for abstract analog flows (might include fuid flow or discrete message)
+	
+	
+	
+	//DO ONE FOR FLOW AND ONE FOR ITEM (BOTH ARE TRAVERSING THINGS)
+	
+	//Ports, signals, in and out
+	//Components present Interfaces. question/todo: commandInternfacein pattern5?
+	
+	//thermal emission has to be flow since is non-discrete
+	//--the "wire"
+	//concept Stream :> mission:Flow  //me**//THE DATA //question: how to communicate a stream? Interface? 
+	//question/todo: should I junctions? has interface,in,out? Or flow from pattern 9, seems to have strict rules of no road blocks
+	
+	//--the "square/box" 
+	//concept Socket :> mission:Interface//me**
+	
+	//question: maybe don't use flow since it is a "non-discrete transfer of substance or energy between components"
+	//concept InSignal :> mission:Flow//me**
+	//concept OutSignal :> mission:Flow//me**
+	
+	//use joins(joins 2 ends of a link) and links 
+	
+	//question: can I bring operations here? (PATTERN 7) 
+	//concept SocketTransmission :> operations:TelemtryTransmissions
+	//concept SocketProcessing :> Operations:TelemetryTransmissions
+	//concept CommandTransmission :> operations:TelemtryTransmissions
+	//concept CommandProcessing :> Operations:TelemetryTransmissions
+	
+	//ri vs concpet?//me**
+	//concept spacecraft.presents.telemetryOut : mission:Presents [
+		//from emissions to sense-termal-emissions
+		//from components:orbiter-spacecraft
+		//to orbiter-spacecraft.telemetryOut
+	//]
+	
+	
+	
+	
+	
+	
+	
+	
+}
