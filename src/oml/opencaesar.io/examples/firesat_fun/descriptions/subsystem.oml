@@ -1,0 +1,82 @@
+description <http://opencaesar.io/examples/firesat_fun/descriptions/subsystem#> as subsystem {
+	extends <http://opencaesar.io/examples/firesat_fun/descriptions/assembly#> as assembly
+	uses <http://imce.jpl.nasa.gov/foundation/base#> as base
+	extends <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#> as assembly-functions
+	uses <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space
+	uses <http://imce.jpl.nasa.gov/foundation/mission#> as mission
+
+
+
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////// Activity 1. COLLECT AND DOWNLINK OBSERVATION DATA ///////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+	// Activity 1 three subsystems: payload, avionics, communications
+	ci payload-subsystem : space:Subsystem [
+		base:aggregates assembly:payload-sensor
+		base:aggregates assembly:signal-processor
+		base:aggregates assembly:payload-sw
+	]
+	/////all 3 contain this one
+	ci avionics-subsystem : space:Subsystem [
+		//payload-subsystem
+		mission:performs assembly-functions:generate-system-commands
+		mission:performs assembly-functions:store-data
+		mission:performs assembly-functions:process-downlink-data
+
+		//control-attitude (Activity 2)
+		mission:performs assembly-functions:generate-system-commands
+
+		//provide-electrical-power (Activity 3)
+		mission:performs assembly-functions:generate-system-commands
+	]
+	ci communications-subsystem : space:Subsystem [ mission:performs assembly-functions:downlink-data ]
+
+
+
+
+
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////// Activity 2. /CONTROL ATTITUDE///////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+	//Activity 2 (data and links in files)
+	//Avionics declared above since re-used
+	ci gnc-subsystem : space:Subsystem  [
+		base:aggregates assembly:horizon-tracker
+		base:aggregates assembly:sun-tracker
+		base:aggregates assembly:inertial-measurement-unit
+		base:aggregates assembly:gnc-sw
+		base:aggregates assembly:reaction-wheel
+	]
+
+
+	ci propulsion-subsystem [ mission:performs assembly-functions:generate-thrust ]
+
+
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////// Activity 3. PROVIDE ELECTRICAL POWER///////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+	//Activity 3  (data and links in files)
+	//Activity 3 subsystems
+	// avionics-subsystem already declared above as part of the Collect And Downlink Observation Data
+	ci power-subsystem : space:Subsystem [
+		base:aggregates assembly:solar-array
+		base:aggregates assembly:battery
+		base:aggregates assembly:power-mgmt-sw
+		base:aggregates assembly:power-conditioner
+		base:aggregates assembly:power-distribution
+	]
+
+
+
+
+
+}

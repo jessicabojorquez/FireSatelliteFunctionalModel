@@ -168,6 +168,7 @@ task owlQuery(type:io.opencaesar.owl.query.OwlQueryTask, dependsOn: owlLoad) {
     endpointURL = 'http://localhost:3030/firesat'
     queryPath = file('src/sparql')
     resultPath = file('build/results')
+    format='json'
 }
 
 /*

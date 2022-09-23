@@ -1,0 +1,157 @@
+description <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#> as assembly-functions {
+	uses <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space
+	extends <http://opencaesar.io/examples/firesat_fun/descriptions/pins#> as pins
+	// Used multiple times
+	//f4*:
+	ci generate-system-commands : space:Function [
+		space:hasOutput pins:generate-system-commands-pin1
+		space:hasOutput pins:generate-system-commands-pin2
+		space:hasOutput pins:generate-system-commands-pin3
+	]
+
+
+	//Activity 1 functions
+	//f1:
+	ci sense-thermal-emission : space:Function [
+		space:hasInput pins:sense-thermal-emission-pin1 //top
+		space:hasInput pins:sense-thermal-emission-pin2 //left
+		space:hasOutput pins:sense-thermal-emission-pin3 //right
+	]
+
+	//f2:
+	ci process-signal : space:Function [
+		space:hasInput pins:process-signal-pin1
+		space:hasOutput pins:process-signal-pin2
+	]
+
+	//f3:
+	ci control-sensor : space:Function [
+		space:hasInput pins:control-sensor-pin1
+		space:hasOutput pins:control-sensor-pin2
+	]
+
+	// Used multiple times
+	//f4*:
+
+
+	//f5:
+	ci store-data : space:Function [
+		space:hasInput pins:store-data-pin1
+		space:hasOutput pins:store-data-pin2
+	]
+
+	//f6:
+	ci process-downlink-data : space:Function [
+		space:hasInput pins:process-downlink-data-pin1
+		space:hasOutput pins:process-downlink-data-pin2
+	]
+
+	//f7:
+	ci downlink-data : space:Function [
+		space:hasInput pins:downlink-data-pin1
+		space:hasOutput pins:downlink-data-pin1
+	]
+
+
+
+	//Activity 2  functions
+	//f2:
+	ci sense-earth-horizon-angle : space:Function [
+		space:hasInput pins:sense-earth-horizon-angle-pin1
+		space:hasOutput pins:sense-earth-horizon-angle-pin2
+	]
+
+	//f3:
+	ci sense-sun-angle : space:Function [//question/todo/check: (NO) shoule angle be a fucntion of sense-sun
+		space:hasInput pins:sense-sun-angle-pin1
+		space:hasOutput pins:sense-sun-angle-pin2
+	]
+
+	//f4:
+	ci sense-spacecraft-angular-rate : space:Function [ space:hasOutput pins:sense-spacecraft-angular-rate-pin1 ]
+
+	//f5:
+	ci generate-reaction-wheel-spin-command : space:Function [
+		space:hasInput pins:generate-reaction-wheel-spin-command-pin1
+		space:hasInput pins:generate-reaction-wheel-spin-command-pin2
+		space:hasInput pins:generate-reaction-wheel-spin-command-pin3
+		space:hasInput pins:generate-reaction-wheel-spin-command-pin4
+		space:hasOutput pins:generate-reaction-wheel-spin-command-pin5
+		space:hasInput pins:generate-reaction-wheel-spin-command-pin6
+	]
+
+	//f6:
+	ci generate-thruster-command :      space:Function [ space:hasOutput pins:generate-thruster-command-pin1 ]
+
+	//f7
+	ci spin-up : space:Function [
+		space:hasInput pins:spin-up-pin1
+		space:hasOutput pins:spin-up-pin2
+	]
+
+	//f8
+	ci spin-down : space:Function [
+		space:hasInput pins:spin-down-pin1
+		space:hasOutput pins:spin-down-pin2
+	]
+
+	//f9
+	ci sense-reaction-wheel-spin-rate : space:Function [
+		space:hasInput pins:sense-reaction-wheel-spin-rate-pin1
+		space:hasOutput pins:sense-reaction-wheel-spin-rate-pin2
+	]
+
+	//f10
+	ci generate-thrust : space:Function [
+		space:hasInput pins:generate-thrust-pin1
+		space:hasOutput pins:generate-thrust-pin1
+	]
+
+
+	//Activity 3 functions
+	//f1: generate-system-commands (already defines in activity 1)
+
+	//f2:
+	ci generate-power : space:Function [
+		space:hasInput pins:generate-power-pin1
+		space:hasOutput pins:generate-power-pin2
+	]
+
+	//f3
+	ci store-energy : space:Function [
+		space:hasInput pins:store-energy-pin1
+		space:hasInput pins:store-energy-pin2
+		space:hasInput pins:store-energy-pin3
+		space:hasOutput pins:store-energy-pin4
+	]
+
+	//f4
+	ci manage-power : space:Function [
+		space:hasInput pins:manage-power-pin1
+		space:hasOutput pins:manage-power-pin2
+		space:hasOutput pins:manage-power-pin3
+	]
+
+	//f5
+	ci condition-power : space:Function [
+		space:hasInput pins:condition-power-pin1
+		space:hasInput pins:condition-power-pin2
+		space:hasOutput pins:condition-power-pin3
+	]
+
+	//f6
+	ci distribute-power : space:Function [
+		space:hasInput pins:distribute-power-pin1
+		space:hasOutput pins:distribute-power-pin2
+	]
+
+	//f7
+	ci connect-power : space:Function [
+		space:hasInput  pins:connect-power-pin1
+		space:hasOutput pins:connect-power-pin2
+	]
+
+	//f8
+	ci consume-power : space:Function [ space:hasInput pins:consume-power-pin1 ]
+
+}

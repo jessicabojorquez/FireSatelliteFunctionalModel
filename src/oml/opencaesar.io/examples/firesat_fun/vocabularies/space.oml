@@ -1,20 +1,11 @@
 @dc:title "Flight System Engineering"
 vocabulary <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space {
-
 	extends <http://purl.org/dc/elements/1.1/> as dc
-
-	extends <http://www.w3.org/2001/XMLSchema#> as xsd
-
-	extends <http://imce.jpl.nasa.gov/foundation/base#> as base
-
 	extends <http://imce.jpl.nasa.gov/foundation/mission#> as mission
+	//extends <http://imce.jpl.nasa.gov/foundation/base#> as base
+	//extends <http://imce.jpl.nasa.gov/foundation/project#> as project
+	//extends <http://bipm.org/jcgm/vim4#> as vim4
 
-	extends <http://imce.jpl.nasa.gov/foundation/project#> as project
-
-	extends <http://bipm.org/jcgm/vim4#> as vim4
-
-	uses <http://iso.org/iso-80000-4.1#> as iso-80000-4.1
-	
 	//////////////////////
 	///NEW STUFF ADDED:///
 	//////////////////////
@@ -78,8 +69,8 @@ vocabulary <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as sp
 	//data flow 
 	concept dataFlow
 	relation entity HasDataFlowTo [
-		from InputPin
-		to OutputPin
+		from OutputPin
+		to InputPin
 		forward hasDataFlowTo
 	]
 	//when I connect thes epins use hasDataFlowTo
@@ -87,8 +78,8 @@ vocabulary <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as sp
 	//data flow 
 	concept dataItem
 	relation entity HasDataItemTo [ 
-		from InputPin
-		to OutputPin
+		from OutputPin
+		to InputPin
 		forward hasDataItemTo
 	]
 	

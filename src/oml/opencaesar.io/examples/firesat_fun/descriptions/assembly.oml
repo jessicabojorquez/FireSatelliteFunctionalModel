@@ -1,0 +1,39 @@
+description <http://opencaesar.io/examples/firesat_fun/descriptions/assembly#> as assembly {
+	extends <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#> as assembly-functions
+	uses <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space
+	uses <http://imce.jpl.nasa.gov/foundation/mission#> as mission
+
+
+	//Activity 1 assemblies (three assemblies in payload-subsystem)
+	ci payload-sensor : space:Assembly [ mission:performs assembly-functions:sense-thermal-emission ]
+	ci signal-processor : space:Assembly [ mission:performs assembly-functions:process-signal ]
+	ci payload-sw : space:Assembly [ mission:performs assembly-functions:control-sensor ]
+
+
+	//Activity 2 assemblies
+	ci horizon-tracker : space:Assembly [ mission:performs assembly-functions:sense-earth-horizon-angle]
+	ci sun-tracker : space:Assembly     [ mission:performs assembly-functions:sense-sun-angle ]
+	ci inertial-measurement-unit : space:Assembly [ mission:performs assembly-functions:sense-spacecraft-angular-rate ]
+	ci gnc-sw : space:Assembly [
+		mission:performs assembly-functions:generate-reaction-wheel-spin-command
+		mission:performs assembly-functions:generate-thruster-command
+	]
+	ci reaction-wheel : space:Assembly [
+		mission:performs assembly-functions:spin-up
+		mission:performs assembly-functions:spin-down
+		mission:performs assembly-functions:sense-reaction-wheel-spin-rate
+	]
+
+
+	//Activity 3 assemblies
+	ci solar-array : space:Assembly [ mission:performs assembly-functions:generate-power ]
+	ci battery : space:Assembly [ mission:performs assembly-functions:store-energy ]
+	ci power-mgmt-sw : space:Assembly [ mission:performs assembly-functions:manage-power ]
+	ci power-conditioner : space:Assembly [ mission:performs assembly-functions:condition-power ]
+	ci power-distribution : space:Assembly [ mission:performs assembly-functions:distribute-power ]
+	ci power-harness : space:Subsystem [ mission:performs assembly-functions:connect-power ]
+	ci subsystem : space:Subsystem [mission:performs assembly-functions:consume-power ]  //question: will the same name cause an issue with confusion in the future?
+
+
+
+}

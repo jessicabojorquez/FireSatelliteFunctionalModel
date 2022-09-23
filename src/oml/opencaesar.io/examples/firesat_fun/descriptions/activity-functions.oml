@@ -1,0 +1,100 @@
+description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#> as activity-functions {
+	uses <http://imce.jpl.nasa.gov/foundation/mission#> as mission
+	extends <http://opencaesar.io/examples/firesat_fun/descriptions/pins#> as pins
+	extends <http://opencaesar.io/examples/firesat_fun/descriptions/links#> as links
+	extends <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#> as assembly-functions
+	uses <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space
+
+
+	//Activity 1 FUNCTION: collect-and-downlink-observation-data
+	ci collect-and-downlink-observation-data : space:Function [
+		mission:invokes assembly-functions:sense-thermal-emission
+		mission:invokes assembly-functions:process-signal
+		mission:invokes assembly-functions:control-sensor
+		mission:invokes assembly-functions:generate-system-commands
+		mission:invokes assembly-functions:store-data
+		mission:invokes assembly-functions:process-downlink-data
+		mission:invokes assembly-functions:downlink-data
+
+		// pins for input and output of flows or items
+		space:hasInput pins:collect-and-downlink-observation-data-pin1
+		space:hasOutput pins:collect-and-downlink-observation-data-pin2
+
+		//"wires" contained in activity
+		space:ownsDataFlow links:from-emissions-to-sense-thermal-emissions //flow "emissions" is the data, not the pin
+		space:ownsDataFlow links:from-control-sensor-to-sense-thermal-emissions //flow
+		space:ownsDataFlow links:from-sense-thermal-emissions-to-process-signal //flow
+		space:ownsDataItem links:from-process-signal-to-store-data //item
+		space:ownsDataItem links:from-store-data-to-process-downlink-data //item
+		space:ownsDataItem links:from-generate-system-commands-to-control-sensor //item
+		space:ownsDataItem links:from-process-downlink-data-to-donwlink-data //item
+		space:ownsDataFlow links:from-downlink-data-to-observation-data //flow
+	]
+
+	//Activity 2 FUNCTION: control-attitude
+	ci control-attitude : space:Function [
+		mission:invokes assembly-functions:generate-system-commands
+		mission:invokes assembly-functions:sense-earth-horizon-angle
+		mission:invokes assembly-functions:sense-sun-angle
+		mission:invokes assembly-functions:sense-spacecraft-angular-rate
+		mission:invokes assembly-functions:generate-reaction-wheel-spin-command
+		mission:invokes assembly-functions:generate-thruster-command
+		mission:invokes assembly-functions:spin-up
+		mission:invokes assembly-functions:spin-down
+		mission:invokes assembly-functions:sense-reaction-wheel-spin-rate
+		mission:invokes assembly-functions:generate-thrust
+
+		// pins for input and output of flows or items
+		space:hasInput pins:control-attitude-pin1
+		space:hasInput pins:control-attitude-pin2
+		space:hasOutput pins:control-attitude-pin3
+		space:hasOutput pins:control-attitude-pin4
+
+		//wires contained in activity
+		space:ownsDataFlow links:from-solar-radiaton-to-sense-sun-angle //flow                                       //from-control-attitude-pin1 (solar radiation is the data itself, making exception for larger activities)
+		space:ownsDataFlow links:from-reflected-light-to-sense-earth-horizon-angle//flow                             //same notes as above: from-solar-radiaton-to-sense-sun-angle
+		space:ownsDataItem links:from-generate-system-commands-to-generate-reaction-wheel-spin-command //item
+		space:ownsDataItem links:from-sense-sun-angle-to-generate-reaction-wheel-spin-command //item
+		space:ownsDataItem links:from-sense-earth-horizon-angle-to-generate-reaction-wheel-spin-command //item
+		space:ownsDataFlow links:from-sense-spacecraft-angular-rate-to-generate-reaction-wheel-spin-command //flow   (a rate so we might not want to loose precision)
+		space:ownsDataFlow links:from-sense-reaction-wheel-spin-rate-to-generate-reaction-wheel-spin-command //flow
+		space:ownsDataItem links:from-generate-thruster-command-to-generate-thrust //item
+		space:ownsDataFlow links:from-generate-thrust-to-thrust //flow (one of the control attitude output pin)
+		//diamonds (decision branches)
+		space:ownsDataItem links:from-generate-reaction-wheel-spin-command-to-spin-up //item since its a command      //from-generate-reaction-wheel-spin-command-to-diamond decision-branch? //item since its a command
+		space:ownsDataItem links:from-generate-reaction-wheel-spin-command-to-spin-down  //item since its a command
+		space:ownsDataFlow links:from-spin-up-to-torque-output   //flow  (one of the control attitude output pin)
+		space:ownsDataFlow links:from-spin-down-to-torque-output // flow  (one of the control attitude output pin)
+
+	]
+
+
+	//Activity 3
+	ci provide-electrical-power : space:Function [
+		mission:invokes assembly-functions:generate-system-commands
+		mission:invokes assembly-functions:generate-power
+		mission:invokes assembly-functions:store-energy
+		mission:invokes assembly-functions:manage-power
+		mission:invokes assembly-functions:condition-power
+		mission:invokes assembly-functions:distribute-power
+		mission:invokes assembly-functions:connect-power
+		mission:invokes assembly-functions:consume-power
+
+		//pins
+		space:hasInput pins:provide-electrical-power-pin1
+		space:hasInput pins:provide-electrical-power-pin2
+
+		//wires
+		space:ownsDataFlow links:from-solar-radiation-input-to-generate-power //flow        //the first input with solar-radiation-data
+		space:ownsDataFlow links:from-electrical-power-input-to-store-energy //flow         //the second input with electrical-power-data
+		space:ownsDataFlow links:from-generate-power-to-store-energy //flow
+		space:ownsDataFlow links:from-store-energy-to-condition-power //flow
+		space:ownsDataItem links:from-generate-system-commands-to-manage-power //item
+		space:ownsDataFlow links:from-manage-power-to-condition-power //flow
+		space:ownsDataFlow links:from-manage-power-to-store-energy //flow
+		space:ownsDataFlow links:from-condition-power-to-distribute-power //flow
+		space:ownsDataFlow links:from-distribute-power-to-connect-power //flow
+		space:ownsDataFlow links:from-connect-power-to-consume-power //flow
+	]
+
+}

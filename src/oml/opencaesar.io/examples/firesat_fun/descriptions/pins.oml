@@ -1,0 +1,87 @@
+description <http://opencaesar.io/examples/firesat_fun/descriptions/pins#> as pins {
+	uses <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space
+	extends <http://opencaesar.io/examples/firesat_fun/descriptions/data#> as data
+
+	////////////////////////////////////////
+	//////////////fireSAT PINS//////////////
+	///////////////////////////////////////
+
+	//Note: generate-system-commands pins used in all 3 activities
+	ci generate-system-commands-pin1 : space:OutputPin [ space:hasItem data:sensor-control-command ] //activity 1
+	ci generate-system-commands-pin2 : space:OutputPin [ space:hasItem data:maneuver-command ] //activity 2
+	ci generate-system-commands-pin3 : space:OutputPin [ space:hasItem data:power-command ] //activity 3
+
+	//Activity 1 pins
+	ci sense-thermal-emission-pin1 : space:InputPin  [ space:hasFlow data:control-sensor-data ] //left most pin in activity 1 diagram  //top: Specializable command space:Item
+	ci sense-thermal-emission-pin2 : space:InputPin  [ space:hasFlow data:emissions-cadob-data ]
+	ci sense-thermal-emission-pin3 : space:OutputPin [ space:hasFlow data:sense-thermal-emission-data ]
+	ci process-signal-pin1 : space:InputPin   [ space:hasFlow data:sense-thermal-emission-data ]
+	ci process-signal-pin2 : space:OutputPin  [ space:hasItem data:process-signal-data ]
+	ci control-sensor-pin1 : space:InputPin [ space:hasItem data:sensor-control-command ]
+	ci control-sensor-pin2 : space:OutputPin [ space:hasFlow data:control-sensor-data ] //non-conventional: pin on the left (the output pin)
+
+	ci store-data-pin1 : space:InputPin  [ space:hasItem data:process-signal-data ]
+	ci store-data-pin2 : space:OutputPin [ space:hasItem data:store-data-data ]
+	ci process-downlink-data-pin1 : space:InputPin [ space:hasFlow data:store-data-data ]
+	ci process-downlink-data-pin2 : space:OutputPin [ space:hasItem data:process-downlink-data-data ]
+	ci downlink-data-pin1 : space:InputPin [ space:hasFlow data:store-data-data ]
+	ci downlink-data-pin2 : space:OutputPin [ space:hasFlow data:downlink-data-data ]
+
+
+
+	//Activity 2 pins
+	ci collect-and-downlink-observation-data-pin1 : space:InputPin  [ space:hasFlow data:emissions-cadob-data ]
+	ci collect-and-downlink-observation-data-pin2 : space:OutputPin [ space:hasFlow data:downlink-data-data ] //observation data : RF
+	ci control-attitude-pin1 : space:InputPin  [ space:hasFlow data:solar-radiation-ca-data ]
+	ci control-attitude-pin2 : space:InputPin  [ space:hasFlow data:reflected-light-ca-data ]
+	ci control-attitude-pin3 : space:OutputPin [
+		space:hasFlow data:spin-up-data
+		space:hasFlow data:spin-down-data
+	]
+	ci control-attitude-pin4 : space:OutputPin [ space:hasFlow data:generate-thrust-data ] 	//ci thrust : space:Flow //out										 <--todo
+	ci sense-earth-horizon-angle-pin1 : space:InputPin [ space:hasFlow data:reflected-light-ca-data ]
+	ci sense-earth-horizon-angle-pin2 : space:OutputPin [ space:hasItem data:sense-earth-horizon-data ]
+	ci sense-sun-angle-pin1 : space:InputPin [ space:hasFlow data:solar-radiation-ca-data ]
+	ci sense-sun-angle-pin2 : space:OutputPin [ space:hasItem data:sense-sun-angle-data ]
+	ci sense-spacecraft-angular-rate-pin1 : space:OutputPin [ space:hasItem data:sense-spacecraft-angular-rate-data ]
+	ci generate-thruster-command-pin1 : space:OutputPin[ space:hasItem data:generate-thruster-command-data ]
+	ci generate-reaction-wheel-spin-command-pin1 : space:InputPin [ space:hasItem data:sense-spacecraft-angular-rate-data ] //from sense-spacecraft-angular-rate
+	ci generate-reaction-wheel-spin-command-pin2 : space:InputPin [ space:hasItem data:sense-sun-angle-data ] //from sense-sun-angle
+	ci generate-reaction-wheel-spin-command-pin3 : space:InputPin [ space:hasItem data:sense-earth-horizon-data ] //from sense-earth-horizon-angle
+	ci generate-reaction-wheel-spin-command-pin4 : space:InputPin [ space:hasItem data:maneuver-command ] //from generate-system-command-data3 (pin3?)
+	ci generate-reaction-wheel-spin-command-pin5 : space:InputPin [ space:hasFlow data:sense-reaction-wheel-spin-rate-data ] //goes to the diamond "pin" or interface
+	ci generate-reaction-wheel-spin-command-pin6 : space:OutputPin [ space:hasItem data:generate-reaction-wheel-spin-command-data ]
+	ci spin-up-pin1 : space:InputPin  [ space:hasItem data:generate-reaction-wheel-spin-command-data ]
+	ci spin-up-pin2 : space:OutputPin [ space:hasFlow data:spin-up-data ]
+	ci spin-down-pin1 : space:InputPin [ space:hasItem data:generate-reaction-wheel-spin-command-data ]
+	ci spin-down-pin2 : space:OutputPin[ space:hasFlow data:spin-down-data ]
+	ci sense-reaction-wheel-spin-rate-pin1 : space:InputPin [ ]//no input
+	ci sense-reaction-wheel-spin-rate-pin2 : space:OutputPin [ space:hasFlow data:sense-reaction-wheel-spin-rate-data ]
+	ci generate-thrust-pin1 : space:InputPin  [ space:hasItem data:generate-thruster-command-data ]
+	ci generate-thrust-pin2 : space:OutputPin [ space:hasFlow data:generate-thrust-data ]
+
+
+	//Activity 3 pins
+	ci provide-electrical-power-pin1 : space:InputPin [ space:hasFlow data:solar-radiation-pep-data ]
+	ci provide-electrical-power-pin2 : space:InputPin [ space:hasFlow data:electrical-power-pep-data ]
+	ci generate-power-pin1 : space:InputPin [ space:hasFlow data:solar-radiation-pep-data ]
+	ci generate-power-pin2 : space:OutputPin [ space:hasFlow data:generate-power-data ]
+	ci store-energy-pin1 : space:InputPin [ space:hasFlow data:manage-power-data1 ]
+	ci store-energy-pin2 : space:InputPin [ space:hasFlow data:generate-power-data ]
+	ci store-energy-pin3 : space:InputPin [ space:hasFlow data:electrical-power-pep-data ]
+	ci store-energy-pin4 : space:OutputPin [ space:hasFlow data:store-energy-data ]
+	ci manage-power-pin1 : space:InputPin [ space:hasItem data:power-command ] //receiving command
+	ci manage-power-pin2 : space:OutputPin [ space:hasFlow data:manage-power-data1 ]
+	ci manage-power-pin3 : space:OutputPin [ space:hasFlow data:manage-power-data2 ] //top
+	ci condition-power-pin1 : space:InputPin [ space:hasFlow data:manage-power-data2 ]
+	ci condition-power-pin2 : space:InputPin [ space:hasFlow data:store-energy-data  ]
+	ci condition-power-pin3 : space:OutputPin [ space:hasFlow data:condition-power-data ]
+	ci distribute-power-pin1 : space:InputPin [ space:hasFlow data:condition-power-data 	]
+	ci distribute-power-pin2 : space:OutputPin [ space:hasFlow data:distribute-power-data ]
+	ci connect-power-pin1 : space:InputPin [ space:hasFlow data:distribute-power-data ]
+	ci connect-power-pin2 : space:OutputPin [ space:hasFlow data:connect-power-data	]
+	ci consume-power-pin1 : space:InputPin [ space:hasFlow data:connect-power-data ]
+
+
+
+}
