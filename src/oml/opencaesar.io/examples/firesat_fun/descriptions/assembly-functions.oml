@@ -1,5 +1,6 @@
 description <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#> as assembly-functions {
 	uses <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space
+	extends <http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#> as activity-functions
 	extends <http://opencaesar.io/examples/firesat_fun/descriptions/pins#> as pins
 	// Used multiple times
 	//f4*:
@@ -10,6 +11,8 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-fun
 	]
 
 
+	
+	
 	//Activity 1 functions
 	//f1:
 	ci sense-thermal-emission : space:Function [

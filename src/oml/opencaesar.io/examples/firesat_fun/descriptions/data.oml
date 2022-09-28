@@ -3,45 +3,43 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/data#> as da
 
 	// All 3 commands from the generate-system-commands specialize this command
 	ci command : space:Item
-	ci sensor-control-command : space:Item [ space:specializes command ]
-	ci maneuver-command : space:Item [ space:specializes command ]
-	ci power-command : space:Item [ space:specializes command ]
+	ci sensor_control_command : space:Item [ space:specializes command ]
+	ci maneuver_command : space:Item [ space:specializes command ]
+	ci power_command : space:Item [ space:specializes command ]
 
 	//activity 1 data
-	ci emissions-cadob-data : space:Flow    //activity 1 data flowing in wire from outside source pin
-	ci sense-thermal-emission-data : space:Flow
-	ci process-signal-data : space:Item
-	ci store-data-data : space:Item
-	ci process-downlink-data-data : space:Item
-	ci downlink-data-data : space:Flow
-	ci control-sensor-data : space:Flow
+	ci emissions_collected : space:Flow    //activity 1 data flowing in wire from outside source pin
+	ci sensed_emissions : space:Flow
+	ci processed_signal : space:Item
+	ci for_process_downlink_data : space:Item
+	ci processed_downlink_data : space:Item
+	ci final_observation_data : space:Flow
+	ci sensor_command : space:Flow
 
 	//activity 2 data
-	ci solar-radiation-ca-data : space:Flow // in (solar radiation to sense sun angle) THIS IS DATA, NEEDS TO BE PUT IN A PIN FIRST THEN SENT THROUGH IT IN A WIRE   <--todo
-	ci reflected-light-ca-data : space:Flow // in
+	ci solar_radiation_for_control_attitude : space:Flow // in (solar radiation to sense sun angle) THIS IS DATA, NEEDS TO BE PUT IN A PIN FIRST THEN SENT THROUGH IT IN A WIRE   <--todo
+	ci reflected_light : space:Flow // in
 
-	ci control-attitude-generate-system-commands-data1 : space:Item
-	ci control-attitude-generate-system-commands-data2 : space:Item
-	ci control-attitude-generate-system-commands-data3 : space:Item
-	ci sense-earth-horizon-data : space:Item
-	ci sense-sun-angle-data : space:Item
-	ci sense-spacecraft-angular-rate-data : space:Flow
-	ci generate-reaction-wheel-spin-command-data : space:Item
-	ci generate-thruster-command-data : space:Item
-	ci spin-up-data : space:Flow
-	ci spin-down-data : space:Flow
-	ci sense-reaction-wheel-spin-rate-data : space:Flow
-	ci generate-thrust-data : space:Flow
+	ci horizon_angle : space:Item
+	ci sun_angle : space:Item
+	ci angular_rate : space:Flow
+	ci reaction_wheel_spin_command_generated : space:Item
+	ci thruster_command_generated : space:Item
+	ci spin_up_result : space:Flow
+	ci spin_down_result : space:Flow
+	ci sensed_spin_rate : space:Flow
+	ci thrust_generated : space:Flow
 
 	//activity 3 data
-	ci solar-radiation-pep-data : space:Flow
-	ci electrical-power-pep-data : space:Flow
-	ci generate-power-data : space:Flow
-	ci manage-power-data1 : space:Flow
-	ci store-energy-data : space:Flow
-	ci manage-power-data2 : space:Flow
-	ci condition-power-data : space:Flow
-	ci distribute-power-data : space:Flow
-	ci connect-power-data : space:Flow
+	ci solar_radiation_for_electrical_power : space:Flow
+	ci electrical_power : space:Flow
+	
+	ci generated_power : space:Flow
+	ci power_to_store : space:Flow
+	ci energy_allowance : space:Flow
+	ci power_to_condition : space:Flow
+	ci conditioned_power : space:Flow
+	ci distributed_power : space:Flow
+	ci for_consumption_power : space:Flow
 
 }
