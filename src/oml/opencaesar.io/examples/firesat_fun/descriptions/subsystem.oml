@@ -55,7 +55,7 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/subsystem#> 
 	]
 
 
-	ci propulsion-subsystem [ mission:performs assembly-functions:generate-thrust ]
+	ci propulsion-subsystem : space:Subsystem  [ mission:performs assembly-functions:generate-thrust ]
 
 
 	//////////////////////////////////////////////////////////////////////////////////////////////

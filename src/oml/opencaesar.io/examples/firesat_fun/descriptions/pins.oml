@@ -25,9 +25,9 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/pins#> as pi
 	ci control-sensor-pin2 : space:OutputPin [ space:hasFlow data:sensor_command ] //non-conventional: pin on the left (the output pin) 
 	ci store-data-pin1 : space:InputPin  [ space:hasItem data:processed_signal ] 
 	ci store-data-pin2 : space:OutputPin [ space:hasItem data:for_process_downlink_data ]
-	ci process-downlink-data-pin1 : space:InputPin [ space:hasFlow data:for_process_downlink_data ]
+	ci process-downlink-data-pin1 : space:InputPin [ space:hasItem data:for_process_downlink_data ]
 	ci process-downlink-data-pin2 : space:OutputPin [ space:hasItem data:processed_downlink_data ]
-	ci downlink-data-pin1 : space:InputPin [ space:hasFlow data:processed_downlink_data ]
+	ci downlink-data-pin1 : space:InputPin [ space:hasItem data:processed_downlink_data ]
 	ci downlink-data-pin2 : space:OutputPin [ space:hasFlow data:final_observation_data ]
 	
 	
@@ -44,9 +44,9 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/pins#> as pi
 	ci sense-earth-horizon-angle-pin2 : space:OutputPin [ space:hasItem data:horizon_angle ]
 	ci sense-sun-angle-pin1 : space:InputPin [ space:hasFlow data:solar_radiation_for_control_attitude ]
 	ci sense-sun-angle-pin2 : space:OutputPin [ space:hasItem data:sun_angle ]
-	ci sense-spacecraft-angular-rate-pin1 : space:OutputPin [ space:hasItem data:angular_rate ]
+	ci sense-spacecraft-angular-rate-pin1 : space:OutputPin [ space:hasFlow data:angular_rate ]
 	ci generate-thruster-command-pin1 : space:OutputPin[ space:hasItem data:thruster_command_generated ]
-	ci generate-reaction-wheel-spin-command-pin1 : space:InputPin [ space:hasItem data:angular_rate ] //from sense-spacecraft-angular-rate
+	ci generate-reaction-wheel-spin-command-pin1 : space:InputPin [ space:hasFlow data:angular_rate ] //from sense-spacecraft-angular-rate
 	ci generate-reaction-wheel-spin-command-pin2 : space:InputPin [ space:hasItem data:sun_angle ] //from sense-sun-angle
 	ci generate-reaction-wheel-spin-command-pin3 : space:InputPin [ space:hasItem data:horizon_angle ] //from sense-earth-horizon-angle
 	ci generate-reaction-wheel-spin-command-pin4 : space:InputPin [ space:hasItem data:maneuver_command ] //from generate-system-command-data3 (pin3?)

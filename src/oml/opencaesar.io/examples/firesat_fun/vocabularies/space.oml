@@ -69,8 +69,8 @@ vocabulary <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as sp
 	//data flow 
 	concept dataFlow
 	relation entity HasDataFlowTo [
-		from OutputPin
-		to InputPin
+		from Pin
+		to Pin
 		forward hasDataFlowTo
 	]
 	//when I connect thes epins use hasDataFlowTo
@@ -78,8 +78,8 @@ vocabulary <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as sp
 	//data flow 
 	concept dataItem
 	relation entity HasDataItemTo [ 
-		from OutputPin
-		to InputPin
+		from Pin
+		to Pin
 		forward hasDataItemTo
 	]
 	

@@ -1,6 +1,6 @@
 description <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#> as assembly-functions {
 	uses <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space
-	extends <http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#> as activity-functions
+	//extends <http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#> as activity-functions
 	extends <http://opencaesar.io/examples/firesat_fun/descriptions/pins#> as pins
 	// Used multiple times
 	//f4*:
@@ -52,7 +52,7 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-fun
 	//f7:
 	ci downlink-data : space:Function [
 		space:hasInput pins:downlink-data-pin1
-		space:hasOutput pins:downlink-data-pin1
+		space:hasOutput pins:downlink-data-pin2
 	]
 
 
@@ -79,8 +79,8 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-fun
 		space:hasInput pins:generate-reaction-wheel-spin-command-pin2
 		space:hasInput pins:generate-reaction-wheel-spin-command-pin3
 		space:hasInput pins:generate-reaction-wheel-spin-command-pin4
-		space:hasOutput pins:generate-reaction-wheel-spin-command-pin5
-		space:hasInput pins:generate-reaction-wheel-spin-command-pin6
+		space:hasInput pins:generate-reaction-wheel-spin-command-pin5
+		space:hasOutput pins:generate-reaction-wheel-spin-command-pin6
 	]
 
 	//f6:
@@ -107,7 +107,7 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-fun
 	//f10
 	ci generate-thrust : space:Function [
 		space:hasInput pins:generate-thrust-pin1
-		space:hasOutput pins:generate-thrust-pin1
+		space:hasOutput pins:generate-thrust-pin2
 	]
 
 

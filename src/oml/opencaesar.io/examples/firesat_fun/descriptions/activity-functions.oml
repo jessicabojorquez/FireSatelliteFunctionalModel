@@ -1,6 +1,6 @@
 description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#> as activity-functions {
 	uses <http://imce.jpl.nasa.gov/foundation/mission#> as mission
-	extends <http://opencaesar.io/examples/firesat_fun/descriptions/data#> as data
+	//extends <http://opencaesar.io/examples/firesat_fun/descriptions/data#> as data
 	extends <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#> as assembly-functions
 	uses <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space
 	extends <http://opencaesar.io/examples/firesat_fun/descriptions/pins#> as pins
@@ -30,7 +30,7 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-fun
 		space:ownsDataItem from-store-data-to-process-downlink-data //item
 		space:ownsDataItem from-generate-system-commands-to-control-sensor //item
 		space:ownsDataItem from-process-downlink-data-to-donwlink-data //item
-		space:ownsDataFlow from-downlink-data-to-observation-data //flow
+		space:ownsDataItem from-downlink-data-to-observation-data //flow
 	]
 	//Activity 1 physical wires: from pin to pin
 	ri from-emissions-to-sense-thermal-emissions : space:HasDataFlowTo [

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="org.eclipse.acceleo.query:7.0.0.202102190929"/>
+		<item value="org.eclipse.acceleo.ui.interpreter:3.7.11.202102190929"/>
+		<item value="org.eclipse.buildship:3.1.5.v20210113-0929"/>
+		<item value="org.eclipse.draw2d:3.10.100.201606061308"/>
+		<item value="org.eclipse.egit:6.1.0.202203080745-r"/>
+		<item value="org.eclipse.elk.algorithms.feature:0.7.1"/>
+		<item value="org.eclipse.elk.feature:0.7.1"/>
+		<item value="org.eclipse.elk.graphviz.feature:0.7.1"/>
+		<item value="org.eclipse.emf.codegen.ecore.ui:2.29.0.v20220226-1304"/>
+		<item value="org.eclipse.emf.codegen.ecore:2.29.0.v20211216-0741"/>
+		<item value="org.eclipse.emf.codegen.ui:2.24.0.v20210924-1718"/>
+		<item value="org.eclipse.emf.codegen:2.23.0.v20210924-1718"/>
+		<item value="org.eclipse.emf.common.ui:2.19.0.v20220226-1304"/>
+		<item value="org.eclipse.emf.common:2.25.0.v20220123-0838"/>
+		<item value="org.eclipse.emf.compare.diagram.gmf:3.3.18.202202240907"/>
+		<item value="org.eclipse.emf.compare.diagram.sirius:3.3.17.202111290942"/>
+		<item value="org.eclipse.emf.compare.egit:3.3.17.202111290942"/>
+		<item value="org.eclipse.emf.compare.ide.ui:3.3.17.202111290942"/>
+		<item value="org.eclipse.emf.compare.rcp.ui:3.3.17.202111290942"/>
+		<item value="org.eclipse.emf.compare:3.3.18.202202240907"/>
+		<item value="org.eclipse.emf.converter:2.17.0.v20210924-1718"/>
+		<item value="org.eclipse.emf.databinding.edit:1.9.0.v20210924-1718"/>
+		<item value="org.eclipse.emf.databinding:1.8.0.v20210924-1718"/>
+		<item value="org.eclipse.emf.doc:2.27.0.v20211216-0559"/>
+		<item value="org.eclipse.emf.ecore.edit:2.15.0.v20210924-1718"/>
+		<item value="org.eclipse.emf.ecore.editor:2.18.0.v20210924-1718"/>
+		<item value="org.eclipse.emf.ecore.xcore.lib:1.8.0.v20210924-1718"/>
+		<item value="org.eclipse.emf.ecore:2.27.0.v20220123-0838"/>
+		<item value="org.eclipse.emf.edit.ui:2.23.0.v20220226-1304"/>
+		<item value="org.eclipse.emf.edit:2.18.0.v20220201-1551"/>
+		<item value="org.eclipse.emf.mapping.ecore.editor:2.15.0.v20210924-1718"/>
+		<item value="org.eclipse.emf.mapping.ecore:2.13.0.v20210924-1718"/>
+		<item value="org.eclipse.emf.mapping.ui:2.14.0.v20210924-1718"/>
+		<item value="org.eclipse.emf.mapping:2.14.0.v20210924-1718"/>
+		<item value="org.eclipse.emf.transaction:1.12.0.201805140824"/>
+		<item value="org.eclipse.emf.validation:1.12.2.202008210805"/>
+		<item value="org.eclipse.emf.workspace:1.12.0.201805140824"/>
+		<item value="org.eclipse.emf:2.29.0.v20220226-1304"/>
+		<item value="org.eclipse.gef:3.11.0.201606061308"/>
+		<item value="org.eclipse.gmf.runtime.notation:1.13.0.202004160913"/>
+		<item value="org.eclipse.gmf:1.14.1.202202190902"/>
+		<item value="org.eclipse.help:2.3.900.v20220308-0310"/>
+		<item value="org.eclipse.jdt:3.18.1100.v20220308-0310"/>
+		<item value="org.eclipse.jgit.gpg.bc:6.1.0.202203080745-r"/>
+		<item value="org.eclipse.jgit.http.apache:6.1.0.202203080745-r"/>
+		<item value="org.eclipse.jgit.ssh.apache:6.1.0.202203080745-r"/>
+		<item value="org.eclipse.jgit:6.1.0.202203080745-r"/>
+		<item value="org.eclipse.justj.openjdk.hotspot.jre.full:11.0.16.v20220903-1116"/>
+		<item value="org.eclipse.pde:3.14.1100.v20220308-0310"/>
+		<item value="org.eclipse.platform:4.23.0.v20220308-0722"/>
+		<item value="org.eclipse.rcp:4.23.0.v20220308-0722"/>
+		<item value="org.eclipse.sirius.aql:7.0.0.202202231547"/>
+		<item value="org.eclipse.sirius.interpreter.feature:7.0.0.202202231547"/>
+		<item value="org.eclipse.sirius.properties.feature:7.0.0.202202231547"/>
+		<item value="org.eclipse.sirius.runtime.ide.ui:7.0.0.202202231547"/>
+		<item value="org.eclipse.sirius.runtime:7.0.0.202202231547"/>
+		<item value="org.eclipse.sirius.specifier.ide.ui:7.0.0.202202231547"/>
+		<item value="org.eclipse.sirius.specifier.properties.feature:7.0.0.202202231547"/>
+		<item value="org.eclipse.xtext.xbase.lib:2.26.0.v20220228-0750"/>
+		<item value="org.eclipse.xtext.xbase:2.26.0.v20220228-0901"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\jessi\OneDrive\Documents\Grad School\capstone_firesat_example\firesat-example"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+</section>
