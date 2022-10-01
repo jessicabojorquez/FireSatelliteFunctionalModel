@@ -3,12 +3,10 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-fun
 	//extends <http://opencaesar.io/examples/firesat_fun/descriptions/data#> as data
 	extends <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#> as assembly-functions
 	uses <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space
-	extends <http://opencaesar.io/examples/firesat_fun/descriptions/pins#> as pins
+	extends <http://opencaesar.io/examples/firesat_fun/descriptions/data#> as data
 
-
-
-
-	//Activity 1 FUNCTION: collect-and-downlink-observation-data
+	//_____________________________________________________________________________________________________________________________________________
+	//Activity 1 activity function: collect-and-downlink-observation-data
 	ci collect-and-downlink-observation-data : space:Function [
 		mission:invokes assembly-functions:sense-thermal-emission
 		mission:invokes assembly-functions:process-signal
@@ -19,8 +17,8 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-fun
 		mission:invokes assembly-functions:downlink-data
 
 		// pins for input and output of flows or items
-		space:hasInput pins:collect-and-downlink-observation-data-pin1
-		space:hasOutput pins:collect-and-downlink-observation-data-pin2
+		space:hasInput  collect-and-downlink-observation-data-pin1
+		space:hasOutput collect-and-downlink-observation-data-pin2
 
 		//"wires" contained in activity
 		space:ownsDataFlow from-emissions-to-sense-thermal-emissions //flow "emissions" is the data, not the pin
@@ -32,50 +30,45 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-fun
 		space:ownsDataItem from-process-downlink-data-to-donwlink-data //item
 		space:ownsDataItem from-downlink-data-to-observation-data //flow
 	]
+	//Activity 1 pins
+	ci collect-and-downlink-observation-data-pin1 : space:InputPin  [ space:hasFlow data:emissions_collected ]
+	ci collect-and-downlink-observation-data-pin2 : space:OutputPin [ space:hasFlow data:final_observation_data ] //observation data : RF
 	//Activity 1 physical wires: from pin to pin
 	ri from-emissions-to-sense-thermal-emissions : space:HasDataFlowTo [
-		from pins:collect-and-downlink-observation-data-pin1 //emissions is the data going through this wire (output from the output pin1)
-		to pins:sense-thermal-emission-pin2 //left most
+		from collect-and-downlink-observation-data-pin1 //emissions is the data going through this wire (output from the output pin1)
+		to assembly-functions:sense-thermal-emission-pin2 //left most
 	]
 	ri from-sense-thermal-emissions-to-process-signal : space:HasDataFlowTo [
-		from pins:sense-thermal-emission-pin3
-		to pins:process-signal-pin1 //left most
+		from assembly-functions:sense-thermal-emission-pin3
+		to assembly-functions:process-signal-pin1 //left most
 	]
 	ri from-process-signal-to-store-data : space:HasDataItemTo [
-		from pins:process-signal-pin2
-		to pins:store-data-pin1 //left most
+		from assembly-functions:process-signal-pin2
+		to assembly-functions:store-data-pin1 //left most
 	]
 	ri from-store-data-to-process-downlink-data : space:HasDataItemTo [
-		from pins:store-data-pin2
-		to pins:process-downlink-data-pin1 //top most
+		from assembly-functions:store-data-pin2
+		to assembly-functions:process-downlink-data-pin1 //top most
 	]
 	ri from-generate-system-commands-to-control-sensor : space:HasDataItemTo [
-		from pins:generate-system-commands-pin1
-		to pins:control-sensor-pin1 //right most
+		from assembly-functions:generate-system-commands-pin1
+		to assembly-functions:control-sensor-pin1 //right most
 	]
 	ri from-control-sensor-to-sense-thermal-emissions : space:HasDataFlowTo [
-		from pins:control-sensor-pin2 //left most
-		to pins:sense-thermal-emission-pin1 //top most
+		from assembly-functions:control-sensor-pin2 //left most
+		to assembly-functions:sense-thermal-emission-pin1 //top most
 	]
 	ri from-process-downlink-data-to-donwlink-data : space:HasDataItemTo [
-		from pins:process-downlink-data-pin1
-		to pins:downlink-data-pin1 //right most
+		from assembly-functions:process-downlink-data-pin1
+		to assembly-functions:downlink-data-pin1 //right most
 	]
 	ri from-downlink-data-to-observation-data : space:HasDataItemTo [
-		from pins:downlink-data-pin2
-		to pins:collect-and-downlink-observation-data-pin2
+		from assembly-functions:downlink-data-pin2
+		to collect-and-downlink-observation-data-pin2
 	]
 	
-	
-
-	
-	
-	
-	
-	
-	
-
-	//Activity 2 FUNCTION: control-attitude
+	//_____________________________________________________________________________________________________________________________________________
+	//Activity 2 activity function: control-attitude
 	ci control-attitude : space:Function [
 		mission:invokes assembly-functions:generate-system-commands
 		mission:invokes assembly-functions:sense-earth-horizon-angle
@@ -89,10 +82,10 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-fun
 		mission:invokes assembly-functions:generate-thrust
 
 		// pins for input and output of flows or items
-		space:hasInput pins:control-attitude-pin1
-		space:hasInput pins:control-attitude-pin2
-		space:hasOutput pins:control-attitude-pin3
-		space:hasOutput pins:control-attitude-pin4
+		space:hasInput control-attitude-pin1
+		space:hasInput control-attitude-pin2
+		space:hasOutput control-attitude-pin3
+		space:hasOutput control-attitude-pin4
 
 		//wires contained in activity
 		space:ownsDataFlow from-solar-radiaton-to-sense-sun-angle //flow                                       //from-control-attitude-pin1 (solar radiation is the data itself, making exception for larger activities)
@@ -111,64 +104,70 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-fun
 		space:ownsDataFlow from-spin-down-to-torque-output // flow  (one of the control attitude output pin)
 
 	]
+	//Activity 2 pins
+	ci control-attitude-pin1 : space:InputPin  [ space:hasFlow data:solar_radiation_for_control_attitude ]
+	ci control-attitude-pin2 : space:InputPin  [ space:hasFlow data:reflected_light ]
+	ci control-attitude-pin3 : space:OutputPin [ 
+		space:hasFlow data:spin_up_result 
+		space:hasFlow data:spin_down_result	
+	]
+	ci control-attitude-pin4 : space:OutputPin [ space:hasFlow data:thrust_generated ] 	
 	//Activity 2 physical wires:
 	ri from-solar-radiaton-to-sense-sun-angle : space:HasDataFlowTo [
-		from pins:control-attitude-pin1
-		to pins:sense-sun-angle-pin1 //left most
+		from control-attitude-pin1
+		to assembly-functions:sense-sun-angle-pin1 //left most
 	]
 	ri from-reflected-light-to-sense-earth-horizon-angle : space:HasDataFlowTo [
-		from pins:control-attitude-pin2
-		to pins:sense-earth-horizon-angle-pin1 //left most
+		from control-attitude-pin2
+		to assembly-functions:sense-earth-horizon-angle-pin1 //left most
 	]
 	ri from-generate-system-commands-to-generate-reaction-wheel-spin-command : space:HasDataItemTo [
-		from pins:generate-system-commands-pin2
-		to pins:generate-reaction-wheel-spin-command-pin4 //bottom left pin
+		from assembly-functions:generate-system-commands-pin2
+		to assembly-functions:generate-reaction-wheel-spin-command-pin4 //bottom left pin
 	]
 	ri from-sense-sun-angle-to-generate-reaction-wheel-spin-command : space:HasDataItemTo [
-		from pins:sense-sun-angle-pin2
-		to pins:generate-reaction-wheel-spin-command-pin2 //top most
+		from assembly-functions:sense-sun-angle-pin2
+		to assembly-functions:generate-reaction-wheel-spin-command-pin2 //top most
 	]
 	ri from-sense-earth-horizon-angle-to-generate-reaction-wheel-spin-command : space:HasDataItemTo [
-		from pins:sense-earth-horizon-angle-pin2
-		to pins:generate-reaction-wheel-spin-command-pin3
+		from assembly-functions:sense-earth-horizon-angle-pin2
+		to assembly-functions:generate-reaction-wheel-spin-command-pin3
 	]
 	ri from-sense-spacecraft-angular-rate-to-generate-reaction-wheel-spin-command : space:HasDataFlowTo [
-		from pins:sense-spacecraft-angular-rate-pin1
-		to pins:generate-reaction-wheel-spin-command-pin1
+		from assembly-functions:sense-spacecraft-angular-rate-pin1
+		to assembly-functions:generate-reaction-wheel-spin-command-pin1
 	]
 	ri from-sense-reaction-wheel-spin-rate-to-generate-reaction-wheel-spin-command : space:HasDataFlowTo [
-		from pins:sense-reaction-wheel-spin-rate-pin2  //only exception to clockwise convention: the output pin on the left
-		to pins:generate-reaction-wheel-spin-command-pin5
+		from assembly-functions:sense-reaction-wheel-spin-rate-pin2  //only exception to clockwise convention: the output pin on the left
+		to assembly-functions:generate-reaction-wheel-spin-command-pin5
 	]
 	ri from-generate-thruster-command-to-generate-thrust : space:HasDataItemTo [
-		from pins:generate-thruster-command-pin1
-		to pins:generate-thrust-pin1
+		from assembly-functions:generate-thruster-command-pin1
+		to assembly-functions:generate-thrust-pin1
 	]
 	ri from-generate-thrust-to-thrust : space:HasDataFlowTo [
-		from pins:generate-thrust-pin2  //a pin
-		to pins:control-attitude-pin4
+		from assembly-functions:generate-thrust-pin2  //a pin
+		to control-attitude-pin4
 	]
 	//decision branches modeled normally
 	ri from-generate-reaction-wheel-spin-command-to-spin-up : space:HasDataItemTo [
-		from pins:generate-reaction-wheel-spin-command-pin6
-		to pins:spin-up-pin1 //bottom
+		from assembly-functions:generate-reaction-wheel-spin-command-pin6
+		to assembly-functions:spin-up-pin1 //bottom
 	]
 	ri from-generate-reaction-wheel-spin-command-to-spin-down : space:HasDataItemTo [
-		from pins:generate-reaction-wheel-spin-command-pin6
-		to pins:spin-down-pin1 //top
+		from assembly-functions:generate-reaction-wheel-spin-command-pin6
+		to assembly-functions:spin-down-pin1 //top
 	]
 	ri from-spin-up-to-torque-output : space:HasDataFlowTo [
-		from pins:spin-up-pin2
-		to pins:control-attitude-pin3 //top output torque
+		from assembly-functions:spin-up-pin2
+		to control-attitude-pin3 //top output torque
 	]
 	ri from-spin-down-to-torque-output : space:HasDataFlowTo [
-		from pins:spin-down-pin2
-		to pins:control-attitude-pin3 //top output torque
+		from assembly-functions:spin-down-pin2
+		to control-attitude-pin3 //top output torque
 	]
 
-	
-
-
+	//_____________________________________________________________________________________________________________________________________________
 	//Activity 3
 	ci provide-electrical-power : space:Function [
 		mission:invokes assembly-functions:generate-system-commands
@@ -181,8 +180,8 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-fun
 		mission:invokes assembly-functions:consume-power
 
 		//pins
-		space:hasInput pins:provide-electrical-power-pin1
-		space:hasInput pins:provide-electrical-power-pin2
+		space:hasInput provide-electrical-power-pin1
+		space:hasInput provide-electrical-power-pin2
 
 		//wires
 		space:ownsDataFlow from-solar-radiation-input-to-generate-power //flow        //the first input with solar-radiation-data
@@ -196,46 +195,49 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-fun
 		space:ownsDataFlow from-distribute-power-to-connect-power //flow
 		space:ownsDataFlow from-connect-power-to-consume-power //flow
 	]
+	//Activity 3 assembly-functions:
+	ci provide-electrical-power-pin1 : space:InputPin [ space:hasFlow data:solar_radiation_for_electrical_power ]
+	ci provide-electrical-power-pin2 : space:InputPin [ space:hasFlow data:electrical_power ]
 	//Activity 3 physical wires:
 	ri from-solar-radiation-input-to-generate-power : space:HasDataFlowTo [
-		from pins:provide-electrical-power-pin1
-		to pins:generate-power-pin1 //left most
+		from provide-electrical-power-pin1
+		to assembly-functions:generate-power-pin1 //left most
 	]
 	ri from-electrical-power-input-to-store-energy : space:HasDataFlowTo [
-		from  pins:provide-electrical-power-pin2
-		to pins:store-energy-pin3
+		from  provide-electrical-power-pin2
+		to assembly-functions:store-energy-pin3
 	]
 	ri from-generate-power-to-store-energy : space:HasDataFlowTo [
-		from  pins:generate-power-pin2
-		to pins:store-energy-pin2
+		from  assembly-functions:generate-power-pin2
+		to assembly-functions:store-energy-pin2
 	]
 	ri from-store-energy-to-condition-power  : space:HasDataFlowTo [
-		from  pins:store-energy-pin4
-		to pins:condition-power-pin2
+		from  assembly-functions:store-energy-pin4
+		to assembly-functions:condition-power-pin2
 	]
 	ri from-generate-system-commands-to-manage-power : space:HasDataItemTo [
-		from  pins:generate-system-commands-pin3
-		to pins:manage-power-pin1
+		from  assembly-functions:generate-system-commands-pin3
+		to assembly-functions:manage-power-pin1
 	]
 	ri from-manage-power-to-store-energy : space:HasDataFlowTo [
-		from  pins:manage-power-pin2
-		to pins:store-energy-pin1
+		from  assembly-functions:manage-power-pin2
+		to assembly-functions:store-energy-pin1
 	]
 	ri from-manage-power-to-condition-power : space:HasDataFlowTo [
-		from  pins:manage-power-pin3
-		to pins:condition-power-pin1
+		from  assembly-functions:manage-power-pin3
+		to assembly-functions:condition-power-pin1
 	]
 	ri from-condition-power-to-distribute-power : space:HasDataFlowTo [
-		from pins:condition-power-pin3
-		to pins:distribute-power-pin1
+		from assembly-functions:condition-power-pin3
+		to assembly-functions:distribute-power-pin1
 	]
 	ri from-distribute-power-to-connect-power : space:HasDataFlowTo [
-		from  pins:distribute-power-pin2
-		to pins:connect-power-pin1
+		from  assembly-functions:distribute-power-pin2
+		to assembly-functions:connect-power-pin1
 	]
 	ri from-connect-power-to-consume-power : space:HasDataFlowTo [
-		from  pins:connect-power-pin2
-		to pins:consume-power-pin1
+		from  assembly-functions:connect-power-pin2
+		to assembly-functions:consume-power-pin1
 	]
 	
 

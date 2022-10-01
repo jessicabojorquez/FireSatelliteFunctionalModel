@@ -5,6 +5,5 @@ description bundle <http://opencaesar.io/examples/firesat_fun/descriptions/bundl
 	includes <http://opencaesar.io/examples/firesat_fun/descriptions/assembly#>
 	includes <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#>
 	includes <http://opencaesar.io/examples/firesat_fun/descriptions/data#>
-	includes <http://opencaesar.io/examples/firesat_fun/descriptions/pins#>
 	includes <http://opencaesar.io/examples/firesat_fun/descriptions/subsystem#>
 }

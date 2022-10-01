@@ -2,12 +2,9 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/firesat#> as
 	uses <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space
 	uses <http://imce.jpl.nasa.gov/foundation/base#> as base
 	uses <http://imce.jpl.nasa.gov/foundation/mission#> as mission
-	//extends <http://opencaesar.io/examples/firesat_fun/descriptions/pins#> as pins
-	//extends <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#> as assembly-functions
 	extends <http://opencaesar.io/examples/firesat_fun/descriptions/assembly#> as assembly
 	extends <http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#> as activity-functions
 	extends <http://opencaesar.io/examples/firesat_fun/descriptions/subsystem#> as subsystem
-	//extends <http://opencaesar.io/examples/firesat_fun/descriptions/data#> as data
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////Created a fireSAT specific-instance of space craft (name firesat)://////////////
