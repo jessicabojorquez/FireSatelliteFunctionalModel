@@ -2,55 +2,36 @@
 vocabulary <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as space {
 	extends <http://purl.org/dc/elements/1.1/> as dc
 	extends <http://imce.jpl.nasa.gov/foundation/mission#> as mission
-	//extends <http://imce.jpl.nasa.gov/foundation/base#> as base
-	//extends <http://imce.jpl.nasa.gov/foundation/project#> as project
-	//extends <http://bipm.org/jcgm/vim4#> as vim4
 
-	// The terms (add new stuff here, remove existing ones later)
-	//restrictions go here
-	//if I want to contain something more specific than component, I can add these
-	//I can add these as I go, doesn't have to be initially
-	//types with capital letters (concept is like class in c++)
-	//content assist: Ctrl-Space
-	//need to add the bubbles from sysML (wich are the functions that each component is performing)
-	concept Spacecraft :> mission:Component [
-		
-	]
-	
-	//interface stuff from tutorial 
-	//to explain the specific interfaces that I want to define here: input pin, output pin, port, etc
-	//todo: define space-specific terminology and relate to mission terminology, by extension.
-	
-	
-	//defined here in space and inheriting from component. Subsytem is also a component
+
+	concept Spacecraft :> mission:Component
 	concept Subsystem :> mission:Component 
-	
 	concept Assembly :> mission:Component
-	
-	//First introduced for SenseThermalEmission, ProcessSignal, ControlSensor (the rectangles with sockets in sysML diagram)
 	concept Function :> mission:Function 
 	
-	//////////////////////////////////////////////
-	///////PORTS, SIGNALS, IN NAD OUT/////////////
+	//super type
+	concept Pin 
 	
-	concept Pin //super type
-	//non-discrete
-	relation entity HasFlow [ //relationship on pin that says that a pin has a flow
+	//non-discrete: relationship on pin that says that a pin has a non-discrete flow
+	relation entity HasFlow [ 
 		from Pin
 		to mission:Flow 
 		forward hasFlow
 	]
-	
-	//discrete
-	relation entity HasItem [ //relationship on pin that says that a pin has a flow
+
+	//discrete: relationship on pin that says that a pin has a discrete item
+	relation entity HasItem [ 
 		from Pin
 		to mission:Item
 		forward hasItem
 	]
-	concept InputPin :> Pin //inherit from pin, so every pin has flow
-	concept OutputPin :> Pin //inherit from pin, so every pin has flow
-	//ri is an instance of relation entity
-	relation entity HasInput [ //in description I can use hasFlow on both inputs and outputs
+	
+	//inherit from pin, every InputPin/OutputPin has flow/item
+	concept InputPin :> Pin 
+	concept OutputPin :> Pin 
+	
+	//ri is an instance of relation entity (in description I can use hasFlow on both inputs and outputs)
+	relation entity HasInput [ 
 		from Function
 		to InputPin 
 		forward hasInput
@@ -61,108 +42,35 @@ vocabulary <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as sp
 		forward hasOutput 
 	]
 	
-	//super type for HasDataFlowTo and HasDataItemTo (
-	
-	
-	//common super type for data item and flow, this will be another ri
-	relation entity OwnsConnector [
+	//"arrow" common super type for data item and flow (which are the wires), this will be another ri (super type of both the relation entities) 
+	relation entity OwnsConnector [ //this is a connection, not a wire since wire is physical.
 		from Function
 		to ConnectsTo
 		forward ownsConnector
 	]
 	
-	
-	
-	//discrete: instead of a link
-	//data flow 
-	concept dataFlow
+	//data flow (not using these anymore)
+	concept dataFlow 
 	concept dataItem
-	relation entity ConnectsTo [
+	
+	//the relation for OwnsConnector (OwnsConnector will go from a Function to ConnectsTo)
+	relation entity ConnectsTo [ 
 		from Pin
 		to Pin
 		forward connectsTo
 	]
-	//when I connect thes epins use hasDataFlowTo
-	
-	//data flow 
-	
-	//relation entity HasDataItemTo [ 
-		//from Pin
-		//to Pin
-		//forward hasDataItemTo
-	//]
-	
-		
 
-	
-	//relation entity OwnsDataFlow [ //relates a function to the data flow object that it owns. "wire or link"  (capital letter creates instance. to create instance of it)
-	//	from Function
-	//	to HasDataFlowTo
-	//	forward ownsDataFlow //underfied (unreal)
-	//]
-	//relation entity OwnsDataItem [ //relates a function to the data flow object that it owns. "wire or link"  (capital letter creates instance. to create instance of it)
-	//	from Function
-	//	to HasDataItemTo
-	//	forward ownsDataItem //underfied (unreal)
-	//]
-	
-	aspect Specializable
-	relation entity Specializes [ //inherits
+	//for the 3 different kinds commands generated, command needs to be specializable
+	aspect Specializable 
+	relation entity Specializes [ 
 		from Specializable
 		to Specializable
 		forward specializes
 	]
 	
-	concept Item :> mission:Item, Specializable  //2 super types
+	//Item or Flow needs be specializable for the generate-commands function output
+	concept Item :> mission:Item, Specializable  
 	concept Flow :> mission:Flow, Specializable
 		
-	
-	
-	
-	
-	
-	
-	//a pin has a type which is of type flow (like a signal) there is support for abstract analog flows (might include fuid flow or discrete message)
-	
-	
-	
-	//DO ONE FOR FLOW AND ONE FOR ITEM (BOTH ARE TRAVERSING THINGS)
-	
-	//Ports, signals, in and out
-	//Components present Interfaces. question/todo: commandInternfacein pattern5?
-	
-	//thermal emission has to be flow since is non-discrete
-	//--the "wire"
-	//concept Stream :> mission:Flow  //me**//THE DATA //question: how to communicate a stream? Interface? 
-	//question/todo: should I junctions? has interface,in,out? Or flow from pattern 9, seems to have strict rules of no road blocks
-	
-	//--the "square/box" 
-	//concept Socket :> mission:Interface//me**
-	
-	//question: maybe don't use flow since it is a "non-discrete transfer of substance or energy between components"
-	//concept InSignal :> mission:Flow//me**
-	//concept OutSignal :> mission:Flow//me**
-	
-	//use joins(joins 2 ends of a link) and links 
-	
-	//question: can I bring operations here? (PATTERN 7) 
-	//concept SocketTransmission :> operations:TelemtryTransmissions
-	//concept SocketProcessing :> Operations:TelemetryTransmissions
-	//concept CommandTransmission :> operations:TelemtryTransmissions
-	//concept CommandProcessing :> Operations:TelemetryTransmissions
-	
-	//ri vs concpet?//me**
-	//concept spacecraft.presents.telemetryOut : mission:Presents [
-		//from emissions to sense-termal-emissions
-		//from components:orbiter-spacecraft
-		//to orbiter-spacecraft.telemetryOut
-	//]
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

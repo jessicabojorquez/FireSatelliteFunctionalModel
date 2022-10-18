@@ -19,7 +19,7 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/subsystem#> 
 		base:aggregates assembly:signal-processor
 		base:aggregates assembly:payload-sw
 	]
-	/////all 3 contain this one
+	//(All 3 activities contain avionics-subsystem)
 	ci avionics-subsystem : space:Subsystem [
 		//payload-subsystem
 		mission:performs assembly-functions:generate-system-commands
@@ -34,18 +34,14 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/subsystem#> 
 	]
 	ci communications-subsystem : space:Subsystem [ mission:performs assembly-functions:downlink-data ]
 
-
-
-
-
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////// Activity 2. /CONTROL ATTITUDE///////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////
 
-	//Activity 2 (data and links in files)
-	//Avionics declared above since re-used
+	//Activity 2 
+	// avionics-subsystem already declared above as part of the Collect And Downlink Observation Data
 	ci gnc-subsystem : space:Subsystem  [
 		base:aggregates assembly:horizon-tracker
 		base:aggregates assembly:sun-tracker
@@ -53,10 +49,7 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/subsystem#> 
 		base:aggregates assembly:gnc-sw
 		base:aggregates assembly:reaction-wheel
 	]
-
-
 	ci propulsion-subsystem : space:Subsystem  [ mission:performs assembly-functions:generate-thrust ]
-
 
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////
@@ -64,8 +57,7 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/subsystem#> 
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////
 
-	//Activity 3  (data and links in files)
-	//Activity 3 subsystems
+	//Activity 3  
 	// avionics-subsystem already declared above as part of the Collect And Downlink Observation Data
 	ci power-subsystem : space:Subsystem [
 		base:aggregates assembly:solar-array
@@ -74,9 +66,5 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/subsystem#> 
 		base:aggregates assembly:power-conditioner
 		base:aggregates assembly:power-distribution
 	]
-
-
-
-
 
 }

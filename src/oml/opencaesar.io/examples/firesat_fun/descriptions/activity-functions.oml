@@ -82,7 +82,6 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-fun
 		mission:invokes assembly-functions:generate-thrust
 		// control-attitude-invokes-generate-system-commands (dont need anymore, performs takes care of it)
 
-
 		// pins for input and output of flows or items
 		space:hasInput control-attitude-pin1
 		space:hasInput control-attitude-pin2
@@ -104,9 +103,7 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-fun
 		space:ownsConnector from-generate-reaction-wheel-spin-command-to-spin-down  //item since its a command
 		space:ownsConnector from-spin-up-to-torque-output   //flow  (one of the control attitude output pin)
 		space:ownsConnector from-spin-down-to-torque-output // flow  (one of the control attitude output pin)
-		
-		//
-		
+
 
 	]
 	//Activity 2 pins
@@ -170,16 +167,7 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/activity-fun
 	ri from-spin-down-to-torque-output : space:ConnectsTo [
 		from assembly-functions:spin-down-pin2
 		to control-attitude-pin3 //top output torque
-	]
-	//convert invocation into ri
-	//mission:invokes assembly-functions:generate-system-commands
-	//no we can say this relationship belongs to the column
-	//ri control-attitude-invokes-generate-system-commands : mission:Invokes [
-	//	from control-attitude
-	//	to assembly-functions:generate-system-commands
-	//]
-	
-	
+	]	
 
 	//_____________________________________________________________________________________________________________________________________________
 	//Activity 3

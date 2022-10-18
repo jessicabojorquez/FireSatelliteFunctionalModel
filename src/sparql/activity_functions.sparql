@@ -10,7 +10,7 @@ WHERE {
 	?invoking_function a space:Function ;
 		mission:invokes ?invoked_function ;
 		space:ownsConnector ?ownedConnector .
-	?invoked_function mission:isPerformedBy ?performer.
+	?invoked_function mission:isPerformedBy ?performer .
 	
 }
 ORDER BY ?invoking_function ?invoked_function ?performer

@@ -7,32 +7,38 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/data#> as da
 	ci maneuver_command : space:Item [ space:specializes command ]
 	ci power_command : space:Item [ space:specializes command ]
 
+	//_________________________________________________________________________________________
 	//activity 1 data
-	ci emissions_collected : space:Flow    //activity 1 data flowing in wire from outside source pin
+	ci emissions_collected : space:Flow    					//activity input
+	
 	ci sensed_emissions : space:Flow
 	ci processed_signal : space:Item
 	ci for_process_downlink_data : space:Item
 	ci processed_downlink_data : space:Item
-	ci final_observation_data : space:Flow
 	ci sensor_command : space:Flow
+	
+	ci final_observation_data : space:Flow 					//activity output 
 
+	//_________________________________________________________________________________________
 	//activity 2 data
-	ci solar_radiation_for_control_attitude : space:Flow // in (solar radiation to sense sun angle) THIS IS DATA, NEEDS TO BE PUT IN A PIN FIRST THEN SENT THROUGH IT IN A WIRE   <--todo
-	ci reflected_light : space:Flow // in
+	ci solar_radiation_for_control_attitude : space:Flow 	//activity input
+	ci reflected_light : space:Flow 						//activity input
 
 	ci horizon_angle : space:Item
 	ci sun_angle : space:Item
 	ci angular_rate : space:Flow
 	ci reaction_wheel_spin_command_generated : space:Item
 	ci thruster_command_generated : space:Item
-	ci spin_up_result : space:Flow
-	ci spin_down_result : space:Flow
 	ci sensed_spin_rate : space:Flow
-	ci thrust_generated : space:Flow
+	
+	ci spin_up_result : space:Flow  						//activity output
+	ci spin_down_result : space:Flow 						//activity output
+	ci thrust_generated : space:Flow 						//activity output
 
+	//_________________________________________________________________________________________
 	//activity 3 data
-	ci solar_radiation_for_electrical_power : space:Flow
-	ci electrical_power : space:Flow
+	ci solar_radiation_for_electrical_power : space:Flow 	//activity input
+	ci electrical_power : space:Flow 						//activity input
 	
 	ci generated_power : space:Flow
 	ci power_to_store : space:Flow
