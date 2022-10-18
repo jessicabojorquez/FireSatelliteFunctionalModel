@@ -1,0 +1,15 @@
+PREFIX fse:   <http://opencaesar.io/examples/firesat/disciplines/fse/fse#>
+PREFIX base:   <http://imce.jpl.nasa.gov/foundation/base#>
+PREFIX mission:   <http://imce.jpl.nasa.gov/foundation/mission#>
+PREFIX space:   <http://opencaesar.io/examples/firesat_fun/vocabularies/space#>
+
+
+SELECT DISTINCT ?m ?m_input ?m_output 
+
+WHERE {
+	?m a space:Function ;
+		space:hasInput ?m_input;
+		space:hasOutput ?m_output;
+}
+ORDER BY ?m ?m_input ?m_output 
+

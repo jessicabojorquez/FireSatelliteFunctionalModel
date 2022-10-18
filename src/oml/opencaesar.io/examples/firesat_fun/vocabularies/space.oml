@@ -6,10 +6,6 @@ vocabulary <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as sp
 	//extends <http://imce.jpl.nasa.gov/foundation/project#> as project
 	//extends <http://bipm.org/jcgm/vim4#> as vim4
 
-	//////////////////////
-	///NEW STUFF ADDED:///
-	//////////////////////
-	
 	// The terms (add new stuff here, remove existing ones later)
 	//restrictions go here
 	//if I want to contain something more specific than component, I can add these
@@ -65,34 +61,50 @@ vocabulary <http://opencaesar.io/examples/firesat_fun/vocabularies/space#> as sp
 		forward hasOutput 
 	]
 	
+	//super type for HasDataFlowTo and HasDataItemTo (
+	
+	
+	//common super type for data item and flow, this will be another ri
+	relation entity OwnsConnector [
+		from Function
+		to ConnectsTo
+		forward ownsConnector
+	]
+	
+	
+	
 	//discrete: instead of a link
 	//data flow 
 	concept dataFlow
-	relation entity HasDataFlowTo [
+	concept dataItem
+	relation entity ConnectsTo [
 		from Pin
 		to Pin
-		forward hasDataFlowTo
+		forward connectsTo
 	]
 	//when I connect thes epins use hasDataFlowTo
 	
 	//data flow 
-	concept dataItem
-	relation entity HasDataItemTo [ 
-		from Pin
-		to Pin
-		forward hasDataItemTo
-	]
 	
-	relation entity OwnsDataFlow [ //relates a function to the data flow object that it owns. "wire or link"  (capital letter creates instance. to create instance of it)
-		from Function
-		to HasDataFlowTo
-		forward ownsDataFlow //underfied (unreal)
-	]
-	relation entity OwnsDataItem [ //relates a function to the data flow object that it owns. "wire or link"  (capital letter creates instance. to create instance of it)
-		from Function
-		to HasDataItemTo
-		forward ownsDataItem //underfied (unreal)
-	]
+	//relation entity HasDataItemTo [ 
+		//from Pin
+		//to Pin
+		//forward hasDataItemTo
+	//]
+	
+		
+
+	
+	//relation entity OwnsDataFlow [ //relates a function to the data flow object that it owns. "wire or link"  (capital letter creates instance. to create instance of it)
+	//	from Function
+	//	to HasDataFlowTo
+	//	forward ownsDataFlow //underfied (unreal)
+	//]
+	//relation entity OwnsDataItem [ //relates a function to the data flow object that it owns. "wire or link"  (capital letter creates instance. to create instance of it)
+	//	from Function
+	//	to HasDataItemTo
+	//	forward ownsDataItem //underfied (unreal)
+	//]
 	
 	aspect Specializable
 	relation entity Specializes [ //inherits

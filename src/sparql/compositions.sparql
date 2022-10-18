@@ -4,5 +4,5 @@ PREFIX base:   <http://imce.jpl.nasa.gov/foundation/base#>
 SELECT ?x ?y
 
 WHERE {
-	?x base:contains ?y
+	?x base:contains ?y #find me anything that contains anything else 
 }
