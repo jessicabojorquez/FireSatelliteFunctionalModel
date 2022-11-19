@@ -4,6 +4,7 @@ PREFIX mission:   <http://imce.jpl.nasa.gov/foundation/mission#>
 PREFIX space:   <http://opencaesar.io/examples/firesat_fun/vocabularies/space#>
 PREFIX oml: <http://opencaesar.io/oml#>
 
+<<<<<<<< HEAD:src/sparql/query5.sparql
 SELECT DISTINCT  ?connector ?source ?target
 
 WHERE {
@@ -12,5 +13,17 @@ WHERE {
       oml:hasTarget ?target .
 }
 ORDER BY ?connector ?source ?target
+========
+
+SELECT DISTINCT ?invoking_function ?invoked_function ?performer
+
+WHERE {
+	?invoking_function a space:Function ;
+		mission:invokes ?invoked_function .
+	?invoked_function mission:isPerformedBy ?performer .
+	
+}
+ORDER BY ?invoking_function ?invoked_function ?performer
+>>>>>>>> d3a5bff4d0ca265eebb1387508185d79c9e6ee6b:src/sparql/invk_invkd_performer.sparql
 
 
