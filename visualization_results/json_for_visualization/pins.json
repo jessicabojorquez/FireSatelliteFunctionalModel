@@ -1,0 +1,163 @@
+{ "head": {
+    "vars": [ "connector" , "source" , "target" ]
+  } ,
+  "results": {
+    "bindings": [
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-condition-power-to-distribute-power" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#condition-power-pin3" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#distribute-power-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-connect-power-to-consume-power" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#connect-power-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#consume-power-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-control-sensor-to-sense-thermal-emissions" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#control-sensor-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#sense-thermal-emission-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-distribute-power-to-connect-power" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#distribute-power-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#connect-power-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-downlink-data-to-observation-data" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#downlink-data-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#collect-and-downlink-observation-data-pin2" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-electrical-power-input-to-store-energy" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#provide-electrical-power-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#store-energy-pin3" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-emissions-to-sense-thermal-emissions" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#collect-and-downlink-observation-data-pin1" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#sense-thermal-emission-pin2" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-generate-power-to-store-energy" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-power-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#store-energy-pin2" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-generate-reaction-wheel-spin-command-to-spin-down" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-reaction-wheel-spin-command-pin6" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#spin-down-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-generate-reaction-wheel-spin-command-to-spin-up" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-reaction-wheel-spin-command-pin6" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#spin-up-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-generate-system-commands-to-control-sensor" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-system-commands-pin1" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#control-sensor-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-generate-system-commands-to-generate-reaction-wheel-spin-command" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-system-commands-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-reaction-wheel-spin-command-pin4" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-generate-system-commands-to-manage-power" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-system-commands-pin3" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#manage-power-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-generate-thrust-to-thrust" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-thrust-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#control-attitude-pin4" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-generate-thruster-command-to-generate-thrust" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-thruster-command-pin1" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-thrust-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-manage-power-to-condition-power" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#manage-power-pin3" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#condition-power-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-manage-power-to-store-energy" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#manage-power-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#store-energy-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-process-downlink-data-to-donwlink-data" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#process-downlink-data-pin1" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#downlink-data-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-process-signal-to-store-data" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#process-signal-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#store-data-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-reflected-light-to-sense-earth-horizon-angle" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#control-attitude-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#sense-earth-horizon-angle-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-sense-earth-horizon-angle-to-generate-reaction-wheel-spin-command" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#sense-earth-horizon-angle-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-reaction-wheel-spin-command-pin3" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-sense-reaction-wheel-spin-rate-to-generate-reaction-wheel-spin-command" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#sense-reaction-wheel-spin-rate-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-reaction-wheel-spin-command-pin5" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-sense-spacecraft-angular-rate-to-generate-reaction-wheel-spin-command" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#sense-spacecraft-angular-rate-pin1" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-reaction-wheel-spin-command-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-sense-sun-angle-to-generate-reaction-wheel-spin-command" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#sense-sun-angle-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-reaction-wheel-spin-command-pin2" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-sense-thermal-emissions-to-process-signal" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#sense-thermal-emission-pin3" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#process-signal-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-solar-radiation-input-to-generate-power" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#provide-electrical-power-pin1" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#generate-power-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-solar-radiaton-to-sense-sun-angle" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#control-attitude-pin1" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#sense-sun-angle-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-spin-down-to-torque-output" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#spin-down-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#control-attitude-pin3" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-spin-up-to-torque-output" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#spin-up-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#control-attitude-pin3" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-store-data-to-process-downlink-data" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#store-data-pin2" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#process-downlink-data-pin1" }
+      } ,
+      { 
+        "connector": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/activity-functions#from-store-energy-to-condition-power" } ,
+        "source": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#store-energy-pin4" } ,
+        "target": { "type": "uri" , "value": "http://opencaesar.io/examples/firesat_fun/descriptions/assembly-functions#condition-power-pin2" }
+      }
+    ]
+  }
+}
