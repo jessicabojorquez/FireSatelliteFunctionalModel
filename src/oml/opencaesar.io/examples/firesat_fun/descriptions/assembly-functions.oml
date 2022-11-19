@@ -64,7 +64,6 @@ description <http://opencaesar.io/examples/firesat_fun/descriptions/assembly-fun
 		space:hasOutput downlink-data-pin2
 	]
 
-
 	//Activity 2 pins
 	ci sense-earth-horizon-angle-pin1 : space:InputPin [ space:hasFlow data:reflected_light ]
 	ci sense-earth-horizon-angle-pin2 : space:OutputPin [ space:hasItem data:horizon_angle ]

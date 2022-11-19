@@ -4,12 +4,14 @@ PREFIX mission:   <http://imce.jpl.nasa.gov/foundation/mission#>
 PREFIX space:   <http://opencaesar.io/examples/firesat_fun/vocabularies/space#>
 
 
-SELECT DISTINCT ?m ?m_input ?m_output 
+SELECT DISTINCT ?invoking_function ?invoked_function ?performer
 
 WHERE {
-	?m a space:Function ;
-		space:hasInput ?m_input;
-		space:hasOutput ?m_output;
+	?invoking_function a space:Function ;
+		mission:invokes ?invoked_function .
+	?invoked_function mission:isPerformedBy ?performer .
+	
 }
-ORDER BY ?m ?m_input ?m_output 
+ORDER BY ?invoking_function ?invoked_function ?performer
+
 

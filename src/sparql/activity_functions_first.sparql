@@ -9,10 +9,10 @@ SELECT DISTINCT ?invoking_function ?invoked_function ?performer ?ownedConnector
 WHERE {
 	?invoking_function a space:Function ;
 		mission:invokes ?invoked_function ;
-		space:ownsConnector ?ownedConnector ;
-		mission:isPerformedBy ?performer .
+		space:ownsConnector ?ownedConnector .
+	?invoked_function mission:isPerformedBy ?performer .
 	
 }
-ORDER BY ?invoking_function ?invoked_function ?performer ?ownedConnector
+ORDER BY ?invoking_function ?invoked_function ?performer
 
 

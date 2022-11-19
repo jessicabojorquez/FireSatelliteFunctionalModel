@@ -1,0 +1,21 @@
+PREFIX fse:   <http://opencaesar.io/examples/firesat/disciplines/fse/fse#>
+PREFIX base:   <http://imce.jpl.nasa.gov/foundation/base#>
+PREFIX mission:   <http://imce.jpl.nasa.gov/foundation/mission#>
+PREFIX space:   <http://opencaesar.io/examples/firesat_fun/vocabularies/space#>
+
+
+SELECT DISTINCT ?invoking_function ?invoked_function ?ownedConnector ?activity_function_input_pin ?activity_function_output_pin ?performer ?assem_function_input_pin ?assem_function_output_pin
+
+WHERE {
+	?invoking_function a space:Function ;
+		mission:invokes ?invoked_function ;
+		space:ownsConnector ?ownedConnector ;
+		space:hasInput ?activity_function_input_pin .
+	?invoked_function mission:isPerformedBy ?performer .
+	OPTIONAL { ?invoked_function space:hasInput ?assem_function_input_pin  }
+	OPTIONAL { ?invoked_function space:hasOutput ?assem_function_output_pin }
+	OPTIONAL { ?invoking_function space:hasOutput ?activity_function_output_pin }
+}
+ORDER BY ?invoking_function ?invoked_function ?ownedConnector ?activity_function_input_pin ?activity_function_output_pin ?performer ?assem_function_input_pin ?assem_function_output_pin
+
+

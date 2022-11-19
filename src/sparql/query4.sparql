@@ -1,0 +1,36 @@
+PREFIX fse:   <http://opencaesar.io/examples/firesat/disciplines/fse/fse#>
+PREFIX base:   <http://imce.jpl.nasa.gov/foundation/base#>
+PREFIX mission:   <http://imce.jpl.nasa.gov/foundation/mission#>
+PREFIX space:   <http://opencaesar.io/examples/firesat_fun/vocabularies/space#>
+
+
+SELECT DISTINCT ?invoking_function ?ownedConnector ?activity_function_input_pin ?activity_input_flow ?activity_input_item ?activity_function_output_pin ?activity_output_flow ?activity_output_item ?invoked_function ?performer ?assem_function_input_pin ?assem_input_flow ?assem_input_item ?assem_function_output_pin ?assem_output_flow ?assem_output_item  
+
+WHERE {
+	?invoking_function a space:Function ;
+		mission:invokes ?invoked_function ;
+		space:ownsConnector ?ownedConnector ;
+			
+		space:hasInput ?activity_function_input_pin .
+		OPTIONAL { ?activity_function_input_pin space:hasFlow ?activity_input_flow }
+		OPTIONAL { ?activity_function_input_pin space:hasItem ?activity_input_item }
+	?invoked_function mission:isPerformedBy ?performer .
+	OPTIONAL { ?invoked_function space:hasInput ?assem_function_input_pin .
+				OPTIONAL { ?assem_function_input_pin space:hasFlow ?assem_input_flow }
+				OPTIONAL { ?assem_function_input_pin space:hasItem ?assem_input_item }
+			}
+	OPTIONAL { ?invoked_function space:hasOutput ?assem_function_output_pin .
+				OPTIONAL { ?assem_function_output_pin space:hasFlow ?assem_output_flow }
+				OPTIONAL { ?assem_function_output_pin space:hasItem ?assem_output_item }
+			}
+	OPTIONAL { ?invoking_function space:hasOutput ?activity_function_output_pin .
+				OPTIONAL { ?activity_function_output_pin space:hasFlow ?activity_output_flow }
+				OPTIONAL { ?activity_function_output_pin space:hasItem ?activity_output_item }
+			}
+
+	
+}
+ORDER BY ?invoking_function ?ownedConnector ?activity_function_input_pin ?activity_input_flow ?activity_input_item ?activity_function_output_pin ?activity_output_flow ?activity_output_item ?invoked_function ?performer ?assem_function_input_pin ?assem_input_flow ?assem_input_item ?assem_function_output_pin ?assem_output_flow ?assem_output_item 
+
+
+

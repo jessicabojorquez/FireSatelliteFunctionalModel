@@ -4,12 +4,12 @@ PREFIX mission:   <http://imce.jpl.nasa.gov/foundation/mission#>
 PREFIX space:   <http://opencaesar.io/examples/firesat_fun/vocabularies/space#>
 
 
-SELECT DISTINCT ?m  ?m_performs
+SELECT DISTINCT ?invoking_function ?ownedConnector
 
 WHERE {
-	?m a space:Function ;
-		mission:performs ?m_performs ;
-		
+	?invoking_function a space:Function ;
+		space:ownsConnector ?ownedConnector .
 }
-ORDER BY ?m  ?m_performs
+ORDER BY ?invoking_function ?ownedConnector
+
 
